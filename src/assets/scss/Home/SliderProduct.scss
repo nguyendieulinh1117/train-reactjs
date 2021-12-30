@@ -1,0 +1,144 @@
+@import "../colors";
+@import "../fonts";
+
+// section
+.h_product-main {
+  &:hover .slick-arrow {
+    opacity: 1;
+  }
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  .slick-arrow {
+    opacity: 0;
+    top: 40%;
+    transition: 0.5s ease;
+  }
+
+  .h_product-flex {
+    padding: 0 8px;
+    cursor: pointer;
+
+    &:hover p {
+      color: #368978;
+    }
+
+    &_hover {
+      overflow: hidden;
+      position: relative;
+
+      .icon-card {
+        font-size: 2.5vw;
+      }
+
+      img {
+        -webkit-transition: all 0.6s ease;
+        transition: all 0.6s ease;
+        object-fit: cover;
+        height: 28vw;
+      }
+
+      &:hover img {
+        transform: scale(1.1);
+        -webkit-transform: scale(1.1);
+        -moz-transform: scale(1.1);
+        -ms-transform: scale(1.1);
+        -o-transform: scale(1.1);
+      }
+
+      &:hover .h_product-flex_sidebar {
+        display: block;
+        animation: iconBlock 1s ease-out 1 normal;
+        -webkit-animation: iconBlock 1s ease-out 1 normal;
+      }
+
+      @keyframes iconBlock {
+        from {
+          transform: translateX(100%);
+          -webkit-transform: translateX(100%);
+          -moz-transform: translateX(100%);
+          -ms-transform: translateX(100%);
+          -o-transform: translateX(100%);
+        }
+
+        to {
+          transform: translateX(0%);
+          -webkit-transform: translateX(0%);
+          -moz-transform: translateX(0%);
+          -ms-transform: translateX(0%);
+          -o-transform: translateX(0%);
+        }
+      }
+    }
+
+    .h_product-flex_sidebar {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      background-color: $primary-color;
+      display: none;
+
+      .icon_hidden {
+        border: none;
+        padding: 14px 16px;
+        color: white;
+        transition: all 0.2s;
+        -webkit-transition: all 0.2s;
+        -moz-transition: all 0.2s;
+        -ms-transition: all 0.2s;
+        -o-transition: all 0.2s;
+
+        &:hover {
+          background-color: white;
+          color: $primary-color;
+        }
+      }
+    }
+
+    &_content {
+      margin-top: 0.3rem;
+      font-size: 1.3vw;
+      text-align: center;
+      color: #5b5555;
+      font-family: SFUToledoMedium;
+      font-weight: 500;
+
+      p {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  .slick-list {
+    margin: 0 -8px;
+  }
+
+  .slick-next {
+    right: -3%;
+  }
+
+  .slick-prev {
+    left: -5%;
+  }
+
+  .slick-prev:before,
+  .slick-next:before {
+    color: black;
+    z-index: 1;
+    font-size: 3vw;
+  }
+
+  .slick-dots {
+    text-align: left;
+
+    li button:before {
+      content: "";
+      width: 20px;
+      height: 5px;
+      border-radius: 30px;
+      background-color: #4fbda8;
+    }
+  }
+}

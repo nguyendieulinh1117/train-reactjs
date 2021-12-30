@@ -1,0 +1,38 @@
+@import "colors";
+
+.root-base .ant-layout-content {
+  background: $screen-color;
+}
+
+.ant-back-top {
+  right: 50px !important;
+}
+
+.head {
+  position: relative;
+
+  &__change {
+    width: 100%;
+    background: $screen-color;
+    height: 100px;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    transform: translate(0, 100%);
+  }
+}
+
+.root-base .ant-layout.ant-layout-has-sider {
+  flex-direction: column !important;
+
+  > .ant-layout-content {
+    width: 100%;
+  }
+}
+.spinner--loading {
+  margin: 200px 0;
+  margin-bottom: 200px;
+  padding: 30px 50px;
+  text-align: center;
+  border-radius: 4px;
+}

@@ -1,0 +1,217 @@
+@import "fonts";
+@import "colors";
+
+.detail {
+  margin: 0 5vw;
+  position: relative;
+
+  .pro {
+    margin-top: 20vh;
+  }
+  .avtpro img {
+    width: 100% !important;
+    height: auto !important;
+  }
+  .image {
+    display: flex;
+    margin-top: 3vh;
+    padding: 0;
+    // text-align: center;
+    justify-content: space-between;
+  }
+  .imageCon {
+    width: 190px;
+    padding: 0;
+    margin: 0;
+  }
+  .imageCon img {
+    //   padding-right: 5vh;
+    width: 100% !important ;
+  }
+  .infor {
+    padding-left: 40px;
+  }
+  .newnewCollect {
+    display: flex;
+    justify-content: flex-end;
+  }
+  .hrCategory {
+    width: 50%;
+    height: 1px;
+    background-color: $dark--hr-color;
+    position: relative;
+    &::before {
+      position: absolute;
+      content: "CATEGORY";
+      right: 0;
+      bottom: 0;
+      transform: translate(120%, 35%);
+      font-size: 18px;
+      color: $light--secondary-color;
+      font-family: $font-SFRMeta;
+      text-transform: lowercase;
+    }
+  }
+  .succulent {
+    font-size: 80px;
+    margin-top: 50px;
+    font-family: $font-SFUToledoMedium;
+    line-height: 75px;
+    color: $fifth-color;
+    margin: 30px 0px 60px 0px;
+  }
+  .hrNewCollect {
+    width: 74.5%;
+    margin-top: 50px;
+    height: 1px;
+    background-color: $dark--hr-color;
+    position: relative;
+    &::before {
+      position: absolute;
+      content: "new collection";
+      left: 0;
+      bottom: 0;
+      transform: translate(-120%, 35%);
+      font-size: 18px;
+      color: $light--secondary-color;
+      font-family: $font-SFRMeta;
+      text-transform: lowercase;
+    }
+  }
+  .price {
+    font-size: 72px;
+    margin-top: 30px;
+    color: $dark-color;
+    font-family: $font-SFRMeta;
+    span {
+      font-family: $font-SFUMetaBold;
+    }
+  }
+  .color_quantity {
+    display: flex;
+    .color {
+      width: 40%;
+      position: relative;
+      padding-right: 30px;
+      p {
+        font-family: $font-SFRMeta;
+        font-size: 20px;
+        color: $light--secondary-color;
+      }
+      &__item {
+        margin: 0 10px;
+        width: 25px;
+        height: 35px;
+        &.green {
+          background-color: $green-color;
+        }
+        &.purple {
+          background-color: $purple-color;
+        }
+        &.yellow {
+          background-color: $warning-color;
+        }
+      }
+      &::before {
+        position: absolute;
+        content: "";
+        width: 1px;
+        height: 100%;
+        right: 0;
+        bottom: 0;
+        transform: rotate(25deg);
+        background-color: black;
+      }
+    }
+    .textQuantyti {
+      font-family: $font-SFRMeta;
+      font-size: 20px;
+      color: $light--secondary-color;
+      margin-left: 100px;
+      height: 10px;
+    }
+    .quantity {
+      margin: 50px auto auto -75px;
+      display: flex;
+      .btn1 {
+        width: 23px;
+        height: 30px;
+        border: 0.01px solid;
+        border-top-left-radius: 5px;
+        border-bottom-left-radius: 5px;
+      }
+      .btn2 {
+        border-top: 1px solid;
+        border-bottom: 1px solid;
+        height: 30px;
+        width: 55px;
+        text-align: center;
+        border-radius: 0;
+      }
+      .btn3 {
+        height: 30px;
+        width: 23px;
+        border: 0.01px solid;
+        border-top-right-radius: 5px;
+        border-bottom-right-radius: 5px;
+      }
+    }
+  }
+  .stock {
+    margin-top: 60px;
+    .iconV {
+      font-size: 26px;
+      padding: 10px;
+      margin: auto;
+    }
+    .icon {
+      font-size: 26px;
+      padding: 10px;
+      margin: auto;
+    }
+    .icon:hover {
+      color: $forth-color;
+    }
+  }
+  .footerInfor {
+    .btn {
+      font-size: 26px;
+      background-color: $dark-color;
+      color: white;
+      border: none;
+      padding: 7px;
+      margin-left: 30px;
+      margin-top: 30px;
+      padding: 13px 17px;
+    }
+    .btn:hover {
+      background-color: $forth-color;
+      font-family: 600;
+    }
+    .Cart {
+      margin-right: 10px;
+    }
+  }
+  .textD {
+    margin-top: 3vh;
+    .hrtext {
+      width: 100%;
+      height: 1px;
+      background-color: $dark--hr-color;
+      position: relative;
+      margin: 35px 0px 15px 0px;
+      font-family: $font-SFUHelveticaLight;
+      &::before {
+        position: absolute;
+        content: "product description";
+        left: 0;
+        bottom: 0;
+        transform: translate(0%, 0%);
+        font-size: 18px;
+        color: $light--secondary-color;
+        font-family: $font-SFRMeta;
+        text-transform: lowercase;
+      }
+    }
+  }
+}

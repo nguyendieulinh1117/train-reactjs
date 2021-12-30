@@ -1,0 +1,62 @@
+@import "fonts";
+@import "colors";
+
+body {
+  .root-base {
+    .ant-layout-header {
+      background: $screen-color;
+      height: auto !important;
+      padding-top: 15px !important;
+      padding-bottom: 15px !important;
+      width: 100%;
+      transition: all 0.2s ease;
+      -webkit-transition: all 0.2s ease;
+      -moz-transition: all 0.2s ease;
+      -ms-transition: all 0.2s ease;
+      -o-transition: all 0.2s ease;
+
+      &.bg__change {
+        background: $light-color !important;
+      }
+
+      .logo {
+        width: 74%;
+      }
+
+      .mobileHidden {
+        .ant-anchor-wrapper {
+          overflow: unset;
+        }
+        .ant-anchor {
+          display: flex;
+          justify-content: flex-end;
+
+          .ant-anchor-ink {
+            display: none;
+          }
+
+          a,
+          .div__login {
+            color: $black-color;
+            padding: 0;
+            margin: 0 20px;
+            padding-bottom: 5px;
+            line-height: 1.4;
+            text-transform: lowercase;
+            font-family: $font-SFRMeta !important;
+            font-weight: 500;
+            font-size: 24px;
+            cursor: pointer;
+
+            &:hover {
+              color: $primary-color;
+              .ant-avatar.ant-avatar-icon {
+                color: $primary-color;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

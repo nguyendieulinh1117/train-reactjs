@@ -1,0 +1,51 @@
+@import "../colors";
+@import "../fonts";
+
+// reset css
+input,
+textarea,
+select,
+button {
+  outline: none;
+}
+
+input {
+  line-height: normal;
+}
+
+label,
+button {
+  cursor: pointer;
+}
+
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.container_home {
+  padding: 0px 5vw;
+}
+
+.product-wrapper {
+  margin-top: 4vw;
+  background-color: $light--white-color;
+}
+
+.h_product-button {
+  padding: 2rem 0;
+  text-align: right;
+
+  button {
+    font-size: 1vw;
+  }
+}
