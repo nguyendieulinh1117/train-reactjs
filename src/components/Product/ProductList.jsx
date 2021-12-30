@@ -3,16 +3,15 @@ import React from "react";
 
 import ProductComponent from "./ProductComponent";
 
-function ProductList() {
+function ProductList({ products }) {
   return (
     <div className="product__section--list">
       <Row gutter={24}>
-        <ProductComponent />
-        <ProductComponent />
-        <ProductComponent />
-        <ProductComponent />
-        <ProductComponent />
-        <ProductComponent />
+        {products &&
+          products.length > 0 &&
+          products.map((item, index) => (
+            <ProductComponent key={index} product={item} />
+          ))}
       </Row>
     </div>
   );

@@ -1,4 +1,5 @@
-import { Col, Row } from "antd";
+import { LoadingOutlined } from "@ant-design/icons";
+import { Col, Row, Spin } from "antd";
 import "assets/scss/product.scss";
 import BreadCrumb from "components/Product/BreadCrumb";
 import Collection from "components/Product/Collection";
@@ -6,7 +7,11 @@ import Filter from "components/Product/Filter";
 import PaginationComponent from "components/Product/PaginationComponent";
 import ProductList from "components/Product/ProductList";
 import SideComponent from "components/Product/SideComponent";
+import { useSelector } from "react-redux";
+import { selectProducts } from "redux/Product";
 export default function Product() {
+  const { productList } = useSelector(selectProducts);
+  const { loading } = useSelector(selectProducts);
   return (
     <div className="product">
       <BreadCrumb page="Product" />
@@ -21,7 +26,17 @@ export default function Product() {
             <Filter />
 
             <>
-              <ProductList />
+              {loading === "loaded" ? (
+                <ProductList products={productList} />
+              ) : (
+                <div className="spinner--loading">
+                  <Spin
+                    indicator={
+                      <LoadingOutlined style={{ fontSize: 50 }} spin />
+                    }
+                  />
+                </div>
+              )}
               <PaginationComponent total={10} currentPage={1} pageSize={3} />
             </>
           </Col>

@@ -5,7 +5,7 @@ import "../../../node_modules/slick-carousel/slick/slick.css";
 import "../../../node_modules/slick-carousel/slick/slick-theme.css";
 import "assets/scss/Home/SliderProduct.scss";
 import Slider from "react-slick";
-function SliderProduct() {
+function SliderProduct({ products }) {
   var settings = {
     // autoplay: true,
     autoplaySpeed: 3000,
@@ -37,12 +37,11 @@ function SliderProduct() {
   };
   return (
     <Slider className="h_product-main" {...settings}>
-      <SliderProductComp />
-      <SliderProductComp />
-      <SliderProductComp />
-      <SliderProductComp />
-      <SliderProductComp />
-      <SliderProductComp />
+      {products &&
+        products.length > 0 &&
+        products.map((item, index) => (
+          <SliderProductComp key={index} product={item} />
+        ))}
     </Slider>
   );
 }
