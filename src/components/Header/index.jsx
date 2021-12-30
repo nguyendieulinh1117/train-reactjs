@@ -3,15 +3,16 @@ import { Anchor, Badge, Col, Layout, Row } from "antd";
 import React, { useEffect, useState } from "react";
 
 import { Link as LinkRoute } from "react-router-dom";
-
+import { useDispatch } from "react-redux";
 import "assets/scss/header.scss";
 import { ShoppingCartOutlined, UserOutlined } from "@ant-design/icons";
 import Avatar from "antd/lib/avatar/avatar";
-
+import { setDefault } from "../../redux/Product";
+import { setDefaultF } from "redux/Filter";
 function Header() {
   const { Header } = Layout;
   const [show, handleShow] = useState(false);
-
+  const dispatch = useDispatch();
   const transitionNavBar = () => {
     if (window.scrollY > 10) {
       handleShow(true);
@@ -47,11 +48,27 @@ function Header() {
           <div className="mobileHidden">
             <Anchor affix={false}>
               <div>
-                <LinkRoute to={"/train-reactjs"}>Home</LinkRoute>
+                <LinkRoute
+                  to={"/train-reactjs"}
+                  onClick={() => {
+                    dispatch(setDefault());
+                    dispatch(setDefaultF());
+                  }}
+                >
+                  Home
+                </LinkRoute>
               </div>
 
               <div>
-                <LinkRoute to={"/train-reactjs/product"}>Product</LinkRoute>
+                <LinkRoute
+                  to={"/train-reactjs/product"}
+                  onClick={() => {
+                    dispatch(setDefault());
+                    dispatch(setDefaultF());
+                  }}
+                >
+                  Product
+                </LinkRoute>
                 <div
                   className={
                     show

@@ -7,12 +7,14 @@ import BaseFooter from "components/Footer";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { getAllProduct } from "redux/Product";
+import { getAllCatalogs } from "redux/Catalog";
 const { Content } = Layout;
 
 export default function BaseLayout() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getAllProduct());
+    dispatch(getAllCatalogs());
   }, [dispatch]);
   return (
     <div className="root-base">

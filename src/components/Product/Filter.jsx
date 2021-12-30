@@ -1,37 +1,28 @@
 import { Radio, Row, Select } from "antd";
 import React from "react";
 import { useState } from "react";
-
+import { useDispatch } from "react-redux";
+import { sortPrice } from "redux/Filter";
+import { setFilter } from "redux/Product";
 const { Option } = Select;
 function Filter() {
   const [sort, setSort] = useState("default");
-
+  const dispatch = useDispatch();
   const changePrice = (value) => {
     console.log(value);
     setSort(value);
-  };
-  const changeSort = (e) => {
-    console.log(e.target.value);
-    setSort(e.target.value);
+    dispatch(setFilter());
+    dispatch(sortPrice(value));
   };
 
   return (
     <div className="product__section--filter">
       <Row justify="space-between" align="middle">
         <div>
-          <Radio.Group
-            defaultValue="default"
-            buttonStyle="solid"
-            value={sort}
-            onChange={changeSort}
-          >
-            <Radio.Button value="default">Default Sorting</Radio.Button>
-
-            <Select placeholder="PRICE" onChange={changePrice}>
-              <Option value="asc">Low to High</Option>
-              <Option value="desc">High to Low</Option>
-            </Select>
-          </Radio.Group>
+          <Select placeholder="PRICE" onChange={changePrice}>
+            <Option value="asc">Low to High</Option>
+            <Option value="desc">High to Low</Option>
+          </Select>
         </div>
       </Row>
     </div>

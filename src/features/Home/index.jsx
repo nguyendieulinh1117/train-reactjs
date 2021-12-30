@@ -11,14 +11,14 @@ import { Spin } from "antd";
 export default function Home() {
   const { productList } = useSelector(selectProducts);
   const { loading } = useSelector(selectProducts);
-
+  const showProductList = productList.filter((item) => item.status === true);
   return (
     <div id="Home">
       <Banner />
       <div className="product-wrapper container_home">
         <HeaderProduct />
         {loading === "loaded" ? (
-          <SliderProduct products={productList} />
+          <SliderProduct products={showProductList} />
         ) : (
           <div className="spinner--loading">
             <Spin

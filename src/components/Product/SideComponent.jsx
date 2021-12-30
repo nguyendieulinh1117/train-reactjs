@@ -3,24 +3,36 @@ import { Button, Input, Layout, Radio, Row } from "antd";
 import React from "react";
 
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { selectCatalogs } from "redux/Catalog";
+import { setCatalog, setPrice } from "redux/Filter";
+import { setFilter } from "redux/Product";
 
 const { Sider } = Layout;
 
 function SideComponent() {
+  const { catalogList } = useSelector(selectCatalogs);
   const [priceMin, setPriceMin] = useState("");
   const [priceMax, setPriceMax] = useState("");
-
+  const dispatch = useDispatch();
   const [err, setErr] = useState(false);
+
   const handleSubmit = () => {
     console.log(priceMin, priceMax);
-    if (
-      Number(priceMin) > Number(priceMax) ||
-      Number(priceMin) < 0 ||
-      Number(priceMax) < 0
-    ) {
+    if (priceMax == "" || priceMin == "") {
       setErr(true);
     } else {
-      setErr(false);
+      if (
+        Number(priceMin) > Number(priceMax) ||
+        Number(priceMin) < 0 ||
+        Number(priceMax) < 0
+      ) {
+        setErr(true);
+      } else {
+        setErr(false);
+        dispatch(setFilter());
+        dispatch(setPrice({ priceMin, priceMax }));
+      }
     }
   };
 
@@ -33,9 +45,25 @@ function SideComponent() {
       </div>
       <Sider className="site-layout-background">
         <h3 className="side__title">Categories</h3>
-        <Radio.Group defaultValue="Catus" buttonStyle="solid">
-          <Radio.Button value={`Catus`}>Catus</Radio.Button>
-          <Radio.Button value={`Plants`}>Plants</Radio.Button>
+        <Radio.Group
+          defaultValue=""
+          buttonStyle="solid"
+          onChange={(e) => {
+            dispatch(setFilter());
+            dispatch(setCatalog(e.target.value));
+          }}
+        >
+          {catalogList &&
+            catalogList.length > 0 &&
+            catalogList.map((item, index) => {
+              if (item.status) {
+                return (
+                  <Radio.Button key={index} value={item._id}>
+                    {item.catalog_name}
+                  </Radio.Button>
+                );
+              }
+            })}
         </Radio.Group>
         <h3 className="side__title">Price range</h3>
         <div className="form__price--range">

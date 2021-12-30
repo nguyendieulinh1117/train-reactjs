@@ -7,11 +7,41 @@ import Filter from "components/Product/Filter";
 import PaginationComponent from "components/Product/PaginationComponent";
 import ProductList from "components/Product/ProductList";
 import SideComponent from "components/Product/SideComponent";
-import { useSelector } from "react-redux";
-import { selectProducts } from "redux/Product";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import { filterProduct, selectProducts } from "redux/Product";
 export default function Product() {
   const { productList } = useSelector(selectProducts);
+  const { filterProductList } = useSelector(selectProducts);
+
   const { loading } = useSelector(selectProducts);
+  const showProductList = productList.filter((item) => item.status === true);
+  const showFilterProductList = filterProductList.filter(
+    (item) => item.status === true
+  );
+
+  const dispatch = useDispatch();
+  //filter
+  const options = useSelector((state) => state.filterState);
+  const { filterStatus } = useSelector((state) => state.productState);
+  console.log(options, filterStatus);
+  useEffect(() => {
+    dispatch(filterProduct(options));
+  }, [dispatch, options]);
+  //pagination
+  const [currentPage, setCurrentPage] = useState(1);
+  const [pageSize, setPageSize] = useState(8);
+  const indexOfLast = currentPage * pageSize;
+  const indexOfFirst = indexOfLast - pageSize;
+  const currentProduct = showProductList.slice(indexOfFirst, indexOfLast);
+  const currentFilterProduct = showFilterProductList.slice(
+    indexOfFirst,
+    indexOfLast
+  );
+
+  const paginate = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
   return (
     <div className="product">
       <BreadCrumb page="Product" />
@@ -27,7 +57,23 @@ export default function Product() {
 
             <>
               {loading === "loaded" ? (
-                <ProductList products={productList} />
+                <>
+                  <ProductList
+                    products={
+                      filterStatus ? currentFilterProduct : currentProduct
+                    }
+                  />
+                  <PaginationComponent
+                    total={
+                      filterStatus
+                        ? showFilterProductList.length
+                        : showProductList.length
+                    }
+                    currentPage={currentPage}
+                    pageSize={pageSize}
+                    paginate={paginate}
+                  />
+                </>
               ) : (
                 <div className="spinner--loading">
                   <Spin
@@ -37,7 +83,6 @@ export default function Product() {
                   />
                 </div>
               )}
-              <PaginationComponent total={10} currentPage={1} pageSize={3} />
             </>
           </Col>
         </Row>
