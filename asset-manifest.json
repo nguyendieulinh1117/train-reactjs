@@ -1,16 +1,26 @@
 {
   "files": {
-    "main.css": "/train-reactjs/static/css/main.073c9b0a.css",
-    "main.js": "/train-reactjs/static/js/main.e4ba67df.js",
-    "static/js/787.2585abe1.chunk.js": "/train-reactjs/static/js/787.2585abe1.chunk.js",
-    "static/media/logo.svg": "/train-reactjs/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
+    "main.css": "/train-reactjs/static/css/main.7d25e845.css",
+    "main.js": "/train-reactjs/static/js/main.1cbe0b5a.js",
+    "static/media/SVN-Swashington.otf": "/train-reactjs/static/media/SVN-Swashington.87e41a333d5a35db2e32.otf",
+    "static/media/SFUToledoBold.TTF": "/train-reactjs/static/media/SFUToledoBold.d83117f2b514d57f89c0.TTF",
+    "static/media/SFUToledoMedium.TTF": "/train-reactjs/static/media/SFUToledoMedium.9fed8f5203e5d31d7d56.TTF",
+    "static/media/SFUCenturySchoolbookBTBoldCondensed.TTF": "/train-reactjs/static/media/SFUCenturySchoolbookBTBoldCondensed.98eccc7723cdb513e326.TTF",
+    "static/media/SVN-Newton.ttf": "/train-reactjs/static/media/SVN-Newton.2f16afd66ad79255048c.ttf",
+    "static/media/SFUHelveticaLight.TTF": "/train-reactjs/static/media/SFUHelveticaLight.5b01cf5216ad208f2714.TTF",
+    "static/media/SFUMetaBold.TTF": "/train-reactjs/static/media/SFUMetaBold.2f55c9e86be2fc54b810.TTF",
+    "static/media/SFUMetaCaps.TTF": "/train-reactjs/static/media/SFUMetaCaps.dd41e4b6175731daadc6.TTF",
+    "static/media/Futura-SC-T-OT-Book_19037.ttf": "/train-reactjs/static/media/Futura-SC-T-OT-Book_19037.e269b93d7d21aa8d804d.ttf",
+    "static/media/slick.svg": "/train-reactjs/static/media/slick.2630a3e3eab21c607e21.svg",
+    "static/media/slick.eot": "/train-reactjs/static/media/slick.a4e97f5a2a64f0ab1323.eot",
+    "static/media/slick.ttf": "/train-reactjs/static/media/slick.c94f7671dcc99dce43e2.ttf",
+    "static/media/slick.woff": "/train-reactjs/static/media/slick.295183786cd8a1389865.woff",
     "index.html": "/train-reactjs/index.html",
-    "main.073c9b0a.css.map": "/train-reactjs/static/css/main.073c9b0a.css.map",
-    "main.e4ba67df.js.map": "/train-reactjs/static/js/main.e4ba67df.js.map",
-    "787.2585abe1.chunk.js.map": "/train-reactjs/static/js/787.2585abe1.chunk.js.map"
+    "main.7d25e845.css.map": "/train-reactjs/static/css/main.7d25e845.css.map",
+    "main.1cbe0b5a.js.map": "/train-reactjs/static/js/main.1cbe0b5a.js.map"
   },
   "entrypoints": [
-    "static/css/main.073c9b0a.css",
-    "static/js/main.e4ba67df.js"
+    "static/css/main.7d25e845.css",
+    "static/js/main.1cbe0b5a.js"
   ]
 }
