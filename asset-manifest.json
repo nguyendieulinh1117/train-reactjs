@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/train-reactjs/static/css/main.7d25e845.css",
-    "main.js": "/train-reactjs/static/js/main.ab904336.js",
+    "main.css": "/train-reactjs/static/css/main.4d8c73c7.css",
+    "main.js": "/train-reactjs/static/js/main.d791caee.js",
     "static/media/SVN-Swashington.otf": "/train-reactjs/static/media/SVN-Swashington.87e41a333d5a35db2e32.otf",
     "static/media/SFUToledoBold.TTF": "/train-reactjs/static/media/SFUToledoBold.d83117f2b514d57f89c0.TTF",
     "static/media/SFUToledoMedium.TTF": "/train-reactjs/static/media/SFUToledoMedium.9fed8f5203e5d31d7d56.TTF",
@@ -16,11 +16,11 @@
     "static/media/slick.ttf": "/train-reactjs/static/media/slick.c94f7671dcc99dce43e2.ttf",
     "static/media/slick.woff": "/train-reactjs/static/media/slick.295183786cd8a1389865.woff",
     "index.html": "/train-reactjs/index.html",
-    "main.7d25e845.css.map": "/train-reactjs/static/css/main.7d25e845.css.map",
-    "main.ab904336.js.map": "/train-reactjs/static/js/main.ab904336.js.map"
+    "main.4d8c73c7.css.map": "/train-reactjs/static/css/main.4d8c73c7.css.map",
+    "main.d791caee.js.map": "/train-reactjs/static/js/main.d791caee.js.map"
   },
   "entrypoints": [
-    "static/css/main.7d25e845.css",
-    "static/js/main.ab904336.js"
+    "static/css/main.4d8c73c7.css",
+    "static/js/main.d791caee.js"
   ]
 }
