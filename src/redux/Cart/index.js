@@ -1,13 +1,15 @@
 const { createSlice, createSelector } = require("@reduxjs/toolkit");
 const initialState = {
-  cartList: [],
+  cartList: sessionStorage.getItem("cart")
+    ? JSON.parse(sessionStorage.getItem("cart"))
+    : [],
 };
 const cartSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
     addCart: (state, action) => {
-      //kiem tra co trong gio hang chua?
+      //kiem tra sp da co trong gio hang chua?
       const itemIndex = state.cartList.findIndex(
         (item) =>
           item.product._id === action.payload.product._id &&
@@ -19,6 +21,7 @@ const cartSlice = createSlice({
         const tempProduct = { ...action.payload };
         state.cartList.push(tempProduct);
       }
+      sessionStorage.setItem("cart", JSON.stringify(state.cartList));
     },
     increaseQty: (state, action) => {
       const itemIndex = state.cartList.findIndex(
@@ -29,6 +32,7 @@ const cartSlice = createSlice({
       if (itemIndex >= 0) {
         state.cartList[itemIndex].quantity += 1;
       }
+      sessionStorage.setItem("cart", JSON.stringify(state.cartList));
     },
     decreaseQty: (state, action) => {
       const itemIndex = state.cartList.findIndex(
@@ -39,6 +43,7 @@ const cartSlice = createSlice({
       if (itemIndex >= 0) {
         state.cartList[itemIndex].quantity -= 1;
       }
+      sessionStorage.setItem("cart", JSON.stringify(state.cartList));
     },
     setQty: (state, action) => {
       const itemIndex = state.cartList.findIndex(
@@ -49,6 +54,7 @@ const cartSlice = createSlice({
       if (itemIndex >= 0) {
         state.cartList[itemIndex].quantity = action.payload.quantity;
       }
+      sessionStorage.setItem("cart", JSON.stringify(state.cartList));
     },
     removeCart: (state, action) => {
       const itemIndex = state.cartList.findIndex(
@@ -59,6 +65,7 @@ const cartSlice = createSlice({
       if (itemIndex >= 0) {
         state.cartList.splice(itemIndex, 1);
       }
+      sessionStorage.setItem("cart", JSON.stringify(state.cartList));
     },
   },
 });
