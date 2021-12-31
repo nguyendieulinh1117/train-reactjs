@@ -1,4 +1,4 @@
-import { Anchor, Badge, Col, Layout, Row } from "antd";
+import { Anchor, Badge, Col, Dropdown, Layout, Menu, Row } from "antd";
 
 import React, { useEffect, useState } from "react";
 
@@ -11,11 +11,13 @@ import { setDefault } from "../../redux/Product";
 import { setDefaultF } from "redux/Filter";
 import { useSelector } from "react-redux";
 import { selectCarts } from "redux/Cart";
+import { logout, selectUser } from "redux/User";
 function Header() {
   const { Header } = Layout;
   const { cartList } = useSelector(selectCarts);
   const [show, handleShow] = useState(false);
   const dispatch = useDispatch();
+  const { currentUser } = useSelector(selectUser);
   const transitionNavBar = () => {
     if (window.scrollY > 10) {
       handleShow(true);
@@ -23,7 +25,13 @@ function Header() {
       handleShow(false);
     }
   };
-
+  const menu = (
+    <Menu>
+      <Menu.Item key="0" onClick={() => dispatch(logout())}>
+        Logout
+      </Menu.Item>
+    </Menu>
+  );
   useEffect(() => {
     window.addEventListener("scroll", transitionNavBar);
     return () => {
@@ -109,18 +117,22 @@ function Header() {
                 </LinkRoute>
               </div>
               <div>
-                <Avatar
-                  style={{
-                    backgroundColor: "#87d068",
-                    width: "40px",
-                    height: "40px",
-                    lineHeight: "40px",
-                    fontSize: "20px",
-                    margin: "0 18px",
-                    cursor: "pointer",
-                  }}
-                  icon={<UserOutlined />}
-                ></Avatar>
+                <Dropdown overlay={menu} trigger={["click"]}>
+                  <Avatar
+                    style={{
+                      backgroundColor: "#87d068",
+                      width: "40px",
+                      height: "40px",
+                      lineHeight: "40px",
+                      fontSize: "20px",
+                      margin: "0 18px",
+                      cursor: "pointer",
+                    }}
+                    icon={<UserOutlined />}
+                  ></Avatar>
+                </Dropdown>
+
+                {currentUser && currentUser.username}
               </div>
             </Anchor>
           </div>

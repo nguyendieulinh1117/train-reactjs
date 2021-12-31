@@ -29,10 +29,10 @@ export const register = createAsyncThunk("REGISTER", async (body, thunkAPI) => {
     return thunkAPI.rejectWithValue({ error: error.response.data.message });
   }
 });
+//login
 export const login = createAsyncThunk("LOGIN", async (body, thunkAPI) => {
   try {
     let { data } = await instance.post(`auth/login`, body);
-    sessionStorage.setItem("token", JSON.stringify(data.accessToken));
 
     return data;
   } catch (error) {
@@ -43,7 +43,7 @@ export const login = createAsyncThunk("LOGIN", async (body, thunkAPI) => {
     return thunkAPI.rejectWithValue({ error: error.response.data });
   }
 });
-//login
+//login remember me
 export const loginSave = createAsyncThunk(
   "LOGIN_SAVE",
   async (body, thunkAPI) => {
@@ -74,7 +74,12 @@ export const fetchGetUser = createAsyncThunk("USER", async (_, thunkAPI) => {
 const userSlice = createSlice({
   name: "user",
   initialState,
-  reducers: {},
+  reducers: {
+    logout: (state) => {
+      localStorage.removeItem("token");
+      return { ...state, currentUser: {} };
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(login.fulfilled, (state, action) => {
       return { ...state, loading: "login", currentUser: action.payload };
@@ -94,6 +99,7 @@ const userSlice = createSlice({
     });
   },
 });
+export const { logout } = userSlice.actions;
 export const selectUser = createSelector(
   (state) => ({
     userList: state.userState.userList,
