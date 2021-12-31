@@ -1,17 +1,12 @@
 import { Col, Row } from "antd";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+
 
 import { Link } from "react-router-dom";
 import { selectCarts } from "redux/Cart";
 
 export default function CartTotal() {
   const { cartList } = useSelector(selectCarts);
-  const dispatch = useDispatch();
-
-  //    useEffect(() => {
-  //       dispatch(getTotals());
-  //    }, [cartItems]);
 
   return (
     <div className="cart__total">

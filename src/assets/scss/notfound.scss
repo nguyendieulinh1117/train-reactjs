@@ -1,0 +1,19 @@
+@import "colors";
+
+@import "fonts";
+.notfound {
+  height: 100vh;
+  &__content {
+    text-align: center;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    vertical-align: middle;
+    h1 {
+      font-family: $font-SFUToledoMedium;
+      font-size: 72px;
+      color: $fifth-color;
+    }
+  }
+}

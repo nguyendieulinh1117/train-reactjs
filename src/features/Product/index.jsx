@@ -1,5 +1,5 @@
 import { LoadingOutlined } from "@ant-design/icons";
-import { Col, Row, Spin } from "antd";
+import { Col, Layout, Row, Spin } from "antd";
 import "assets/scss/product.scss";
 import BreadCrumb from "components/Product/BreadCrumb";
 import Collection from "components/Product/Collection";
@@ -10,6 +10,9 @@ import SideComponent from "components/Product/SideComponent";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { filterProduct, selectProducts } from "redux/Product";
+import Header from "components/Header";
+import BaseFooter from "components/Footer";
+const { Content } = Layout;
 export default function Product() {
   const { productList } = useSelector(selectProducts);
   const { filterProductList } = useSelector(selectProducts);
@@ -43,50 +46,58 @@ export default function Product() {
     setCurrentPage(pageNumber);
   };
   return (
-    <div className="product">
-      <BreadCrumb page="Product" />
+    <Layout>
+      <Header />
+      <Content>
+        <div className="head">
+          <div className="product">
+            <BreadCrumb page="Product" />
 
-      <Collection />
-      <div className="product__section">
-        <Row>
-          <Col xs={24} sm={24} md={6} lg={6} xl={6}>
-            <SideComponent />
-          </Col>
-          <Col xs={24} sm={24} md={18} lg={18} xl={18}>
-            <Filter />
+            <Collection />
+            <div className="product__section">
+              <Row>
+                <Col xs={24} sm={24} md={6} lg={6} xl={6}>
+                  <SideComponent />
+                </Col>
+                <Col xs={24} sm={24} md={18} lg={18} xl={18}>
+                  <Filter />
 
-            <>
-              {loading === "loaded" ? (
-                <>
-                  <ProductList
-                    products={
-                      filterStatus ? currentFilterProduct : currentProduct
-                    }
-                  />
-                  <PaginationComponent
-                    total={
-                      filterStatus
-                        ? showFilterProductList.length
-                        : showProductList.length
-                    }
-                    currentPage={currentPage}
-                    pageSize={pageSize}
-                    paginate={paginate}
-                  />
-                </>
-              ) : (
-                <div className="spinner--loading">
-                  <Spin
-                    indicator={
-                      <LoadingOutlined style={{ fontSize: 50 }} spin />
-                    }
-                  />
-                </div>
-              )}
-            </>
-          </Col>
-        </Row>
-      </div>
-    </div>
+                  <>
+                    {loading === "loaded" ? (
+                      <>
+                        <ProductList
+                          products={
+                            filterStatus ? currentFilterProduct : currentProduct
+                          }
+                        />
+                        <PaginationComponent
+                          total={
+                            filterStatus
+                              ? showFilterProductList.length
+                              : showProductList.length
+                          }
+                          currentPage={currentPage}
+                          pageSize={pageSize}
+                          paginate={paginate}
+                        />
+                      </>
+                    ) : (
+                      <div className="spinner--loading">
+                        <Spin
+                          indicator={
+                            <LoadingOutlined style={{ fontSize: 50 }} spin />
+                          }
+                        />
+                      </div>
+                    )}
+                  </>
+                </Col>
+              </Row>
+            </div>
+          </div>
+        </div>
+      </Content>
+      <BaseFooter />
+    </Layout>
   );
 }

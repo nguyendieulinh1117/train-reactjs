@@ -1,10 +1,14 @@
 import { BaseLayout } from "components/Layout";
-import { BrowserRouter } from "react-router-dom";
+import { NotFound } from "features";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 function App() {
   return (
     <BrowserRouter>
-      <BaseLayout />
+      <Routes>
+        <Route path="/train-reactjs/*" element={<BaseLayout />} />
+        <Route path="/*" element={<NotFound />} />
+      </Routes>
     </BrowserRouter>
   );
 }

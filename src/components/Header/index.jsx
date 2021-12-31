@@ -82,7 +82,7 @@ function Header() {
               </div>
 
               <div>
-                <LinkRoute to={"train-reactjs/cart"}>
+                <LinkRoute to={"/train-reactjs/cart"}>
                   <Badge
                     count={
                       cartList.length === 0
