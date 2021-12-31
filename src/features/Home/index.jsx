@@ -19,37 +19,43 @@ export default function Home() {
   const showProductList = productList.filter((item) => item.status === true);
   const navigate = useNavigate();
   return (
-    <Layout>
-      <Header />
-      <Content>
-        <div className="head">
-          <div id="Home">
-            <Banner />
-            <div className="product-wrapper container_home">
-              <HeaderProduct />
-              {loading === "loaded" ? (
-                <SliderProduct products={showProductList} />
-              ) : (
-                <div className="spinner--loading">
-                  <Spin
-                    indicator={
-                      <LoadingOutlined style={{ fontSize: 50 }} spin />
-                    }
-                  />
-                </div>
-              )}
+    <>
+      {localStorage.getItem("token") ? (
+        <Layout>
+          <Header />
+          <Content>
+            <div className="head">
+              <div id="Home">
+                <Banner />
+                <div className="product-wrapper container_home">
+                  <HeaderProduct />
+                  {loading === "loaded" ? (
+                    <SliderProduct products={showProductList} />
+                  ) : (
+                    <div className="spinner--loading">
+                      <Spin
+                        indicator={
+                          <LoadingOutlined style={{ fontSize: 50 }} spin />
+                        }
+                      />
+                    </div>
+                  )}
 
-              <div
-                className="h_product-button"
-                onClick={() => navigate("/train-reactjs/product")}
-              >
-                <Button title="all product >>" />
+                  <div
+                    className="h_product-button"
+                    onClick={() => navigate("/train-reactjs/product")}
+                  >
+                    <Button title="all product >>" />
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-        </div>
-      </Content>
-      <BaseFooter />
-    </Layout>
+          </Content>
+          <BaseFooter />
+        </Layout>
+      ) : (
+        navigate("/login")
+      )}
+    </>
   );
 }

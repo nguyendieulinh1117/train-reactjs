@@ -12,6 +12,7 @@ import { useEffect, useState } from "react";
 import { filterProduct, selectProducts } from "redux/Product";
 import Header from "components/Header";
 import BaseFooter from "components/Footer";
+import { useNavigate } from "react-router-dom";
 const { Content } = Layout;
 export default function Product() {
   const { productList } = useSelector(selectProducts);
@@ -22,7 +23,7 @@ export default function Product() {
   const showFilterProductList = filterProductList.filter(
     (item) => item.status === true
   );
-
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   //filter
   const options = useSelector((state) => state.filterState);
@@ -46,58 +47,69 @@ export default function Product() {
     setCurrentPage(pageNumber);
   };
   return (
-    <Layout>
-      <Header />
-      <Content>
-        <div className="head">
-          <div className="product">
-            <BreadCrumb page="Product" />
+    <>
+      {localStorage.getItem("token") ? (
+        <Layout>
+          <Header />
+          <Content>
+            <div className="head">
+              <div className="product">
+                <BreadCrumb page="Product" />
 
-            <Collection />
-            <div className="product__section">
-              <Row>
-                <Col xs={24} sm={24} md={6} lg={6} xl={6}>
-                  <SideComponent />
-                </Col>
-                <Col xs={24} sm={24} md={18} lg={18} xl={18}>
-                  <Filter />
+                <Collection />
+                <div className="product__section">
+                  <Row>
+                    <Col xs={24} sm={24} md={6} lg={6} xl={6}>
+                      <SideComponent />
+                    </Col>
+                    <Col xs={24} sm={24} md={18} lg={18} xl={18}>
+                      <Filter />
 
-                  <>
-                    {loading === "loaded" ? (
                       <>
-                        <ProductList
-                          products={
-                            filterStatus ? currentFilterProduct : currentProduct
-                          }
-                        />
-                        <PaginationComponent
-                          total={
-                            filterStatus
-                              ? showFilterProductList.length
-                              : showProductList.length
-                          }
-                          currentPage={currentPage}
-                          pageSize={pageSize}
-                          paginate={paginate}
-                        />
+                        {loading === "loaded" ? (
+                          <>
+                            <ProductList
+                              products={
+                                filterStatus
+                                  ? currentFilterProduct
+                                  : currentProduct
+                              }
+                            />
+                            <PaginationComponent
+                              total={
+                                filterStatus
+                                  ? showFilterProductList.length
+                                  : showProductList.length
+                              }
+                              currentPage={currentPage}
+                              pageSize={pageSize}
+                              paginate={paginate}
+                            />
+                          </>
+                        ) : (
+                          <div className="spinner--loading">
+                            <Spin
+                              indicator={
+                                <LoadingOutlined
+                                  style={{ fontSize: 50 }}
+                                  spin
+                                />
+                              }
+                            />
+                          </div>
+                        )}
                       </>
-                    ) : (
-                      <div className="spinner--loading">
-                        <Spin
-                          indicator={
-                            <LoadingOutlined style={{ fontSize: 50 }} spin />
-                          }
-                        />
-                      </div>
-                    )}
-                  </>
-                </Col>
-              </Row>
+                    </Col>
+                  </Row>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-      </Content>
-      <BaseFooter />
-    </Layout>
+          </Content>
+          <BaseFooter />
+        </Layout>
+      ) : (
+        navigate("/login")
+      )}
+    </>
   );
 }

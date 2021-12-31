@@ -1,25 +1,25 @@
-import instance from "./axiosClient";
-export const requestsUser = {
-  async register(body) {
-    const config = {
-      method: "POST",
-      url: "auth/register",
-      data: body,
-    };
-    const { data } = await instance(config);
-    return data;
-  },
-  async login(body) {
-    const config = {
-      method: "POST",
-      url: "auth/login",
-      data: body,
-    };
-    try {
-      const { data } = await instance(config);
-      return data;
-    } catch (error) {
-      return error;
+import * as CryptoJS from "crypto-js";
+
+import { useDispatch } from "react-redux";
+import { fetchGetUser, loginSave } from "redux/User";
+export default function AutoLogin() {
+  const dispatch = useDispatch();
+
+  const autoLogin = async (idUser) => {
+    const userData = await dispatch(fetchGetUser());
+
+    const { username, password } = userData.payload.find(
+      (item) => idUser === item._id
+    );
+    const bytes = CryptoJS.AES.decrypt(password, "treeworld");
+    const originalPassword = bytes.toString(CryptoJS.enc.Utf8);
+    if (idUser) {
+      return await dispatch(
+        loginSave({ username: username, password: originalPassword })
+      );
+    } else {
+      return;
     }
-  },
-};
+  };
+  return { autoLogin };
+}

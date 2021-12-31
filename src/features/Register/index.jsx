@@ -1,36 +1,67 @@
-import { Form, Input, Button, Checkbox } from "antd";
+import { Form, Input, Button } from "antd";
 import "assets/scss/login.scss";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { register } from "redux/User";
+
 export default function Register() {
+  const dispatch = useDispatch();
+  const [form] = Form.useForm();
+  const navigate = useNavigate();
+
   const onFinish = (values) => {
     console.log("Success:", values);
+    dispatch(register(values));
+    form.resetFields();
   };
 
-  const onFinishFailed = (errorInfo) => {
-    console.log("Failed:", errorInfo);
+  const formItemLayout = {
+    labelCol: {
+      xs: {
+        span: 24,
+      },
+      sm: {
+        span: 8,
+      },
+    },
+    wrapperCol: {
+      xs: {
+        span: 24,
+      },
+      sm: {
+        span: 16,
+      },
+    },
   };
-  const navigate = useNavigate();
+  const tailFormItemLayout = {
+    wrapperCol: {
+      xs: {
+        span: 24,
+        offset: 0,
+      },
+      sm: {
+        span: 16,
+        offset: 8,
+      },
+    },
+  };
+
   return (
     <div className="login">
       <h3>Register</h3>
       <Form
-        name="basic"
-        labelCol={{
-          span: 4,
-        }}
-        wrapperCol={{
-          span: 20,
-        }}
-        initialValues={{
-          remember: true,
-        }}
+        {...formItemLayout}
+        form={form}
+        name="register"
         onFinish={onFinish}
-        onFinishFailed={onFinishFailed}
-        autoComplete="off"
+        initialValues={{
+          prefix: "84",
+        }}
+        scrollToFirstError
       >
         <Form.Item
-          label="Username"
           name="username"
+          label="Username"
           rules={[
             {
               required: true,
@@ -40,39 +71,87 @@ export default function Register() {
         >
           <Input />
         </Form.Item>
+        <Form.Item
+          name="email"
+          label="E-mail"
+          rules={[
+            {
+              type: "email",
+              message: "The input is not valid E-mail!",
+            },
+            {
+              required: true,
+              message: "Please input your E-mail!",
+            },
+          ]}
+        >
+          <Input />
+        </Form.Item>
 
         <Form.Item
-          label="Password"
           name="password"
+          label="Password"
           rules={[
             {
               required: true,
               message: "Please input your password!",
             },
           ]}
+          hasFeedback
         >
           <Input.Password />
         </Form.Item>
 
         <Form.Item
-          name="remember"
-          valuePropName="checked"
-          wrapperCol={{
-            offset: 4,
-            span: 20,
-          }}
+          name="confirm"
+          label="Confirm Password"
+          dependencies={["password"]}
+          hasFeedback
+          rules={[
+            {
+              required: true,
+              message: "Please confirm your password!",
+            },
+            ({ getFieldValue }) => ({
+              validator(_, value) {
+                if (!value || getFieldValue("password") === value) {
+                  return Promise.resolve();
+                }
+
+                return Promise.reject(
+                  new Error("The two passwords that you entered do not match!")
+                );
+              },
+            }),
+          ]}
         >
-          <Checkbox>Remember me</Checkbox>
+          <Input.Password />
         </Form.Item>
 
         <Form.Item
-          wrapperCol={{
-            offset: 4,
-            span: 20,
-          }}
+          name="phone_number"
+          label="Phone Number"
+          rules={[
+            {
+              pattern: new RegExp(/^[0]\d{9}$/),
+              message: "Please input valid phone number",
+            },
+            {
+              required: true,
+              message: "Please input your phone number",
+            },
+          ]}
         >
+          <Input
+            style={{
+              width: "100%",
+            }}
+          />
+        </Form.Item>
+
+        <Form.Item {...tailFormItemLayout}>
           <Button type="primary" htmlType="submit">
-            Submit
+            Register
           </Button>
           <Button type="secondary" onClick={() => navigate("/login")}>
             Back
