@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/train-reactjs/static/css/main.72cf8d35.css",
-    "main.js": "/train-reactjs/static/js/main.20bc9144.js",
+    "main.js": "/train-reactjs/static/js/main.6f53be7f.js",
     "static/media/SVN-Swashington.otf": "/train-reactjs/static/media/SVN-Swashington.87e41a333d5a35db2e32.otf",
     "static/media/SFUToledoBold.TTF": "/train-reactjs/static/media/SFUToledoBold.d83117f2b514d57f89c0.TTF",
     "static/media/SFUToledoMedium.TTF": "/train-reactjs/static/media/SFUToledoMedium.9fed8f5203e5d31d7d56.TTF",
@@ -17,10 +17,10 @@
     "static/media/slick.woff": "/train-reactjs/static/media/slick.295183786cd8a1389865.woff",
     "index.html": "/train-reactjs/index.html",
     "main.72cf8d35.css.map": "/train-reactjs/static/css/main.72cf8d35.css.map",
-    "main.20bc9144.js.map": "/train-reactjs/static/js/main.20bc9144.js.map"
+    "main.6f53be7f.js.map": "/train-reactjs/static/js/main.6f53be7f.js.map"
   },
   "entrypoints": [
     "static/css/main.72cf8d35.css",
-    "static/js/main.20bc9144.js"
+    "static/js/main.6f53be7f.js"
   ]
 }
