@@ -1,5 +1,5 @@
 import { BaseLayout } from "components/Layout";
-import { NotFound } from "features";
+import { Login, NotFound, Register } from "features";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 function App() {
@@ -7,6 +7,8 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/train-reactjs/*" element={<BaseLayout />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
         <Route path="/*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>

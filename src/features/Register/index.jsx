@@ -1,33 +1,18 @@
 import { Form, Input, Button, Checkbox } from "antd";
 import "assets/scss/login.scss";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { loginSave, selectUser } from "redux/User";
-import { useSelector } from "react-redux";
-import { requestsUser } from "api/userApi";
-export default function Login() {
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const { currentUser } = useSelector(selectUser);
-  const { loading } = useSelector(selectUser);
-
+export default function Register() {
   const onFinish = (values) => {
-    // console.log("Success:", values);
-    requestsUser
-      .login({ username: values.username, password: values.password })
-      .then((data) => console.log(data))
-      .catch((error) => console.log(error.response.data));
-    // dispatch(
-    //   loginSave({ username: values.username, password: values.password })
-    // );
+    console.log("Success:", values);
   };
 
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
   };
+  const navigate = useNavigate();
   return (
     <div className="login">
-      <h3>Login</h3>
+      <h3>Register</h3>
       <Form
         name="basic"
         labelCol={{
@@ -89,8 +74,8 @@ export default function Login() {
           <Button type="primary" htmlType="submit">
             Submit
           </Button>
-          <Button type="secondary" onClick={() => navigate("/register")}>
-            Register
+          <Button type="secondary" onClick={() => navigate("/login")}>
+            Back
           </Button>
         </Form.Item>
       </Form>

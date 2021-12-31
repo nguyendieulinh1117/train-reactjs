@@ -1,0 +1,16 @@
+.login {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  h3 {
+    font-size: 50px;
+    margin: 50px 0 70px;
+    text-transform: uppercase;
+  }
+  .ant-form {
+    width: 500px;
+    margin: 0 auto;
+  }
+}
