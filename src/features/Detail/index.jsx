@@ -48,6 +48,10 @@ export default function Detail() {
       });
     } else {
       dispatch(addCart({ product, quantity: qty, pickColor: color }));
+      toast.success(`${product.product_name} added to cart`, {
+        position: "bottom-left",
+        autoClose: 2000,
+      });
     }
   };
 
