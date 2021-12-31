@@ -101,7 +101,7 @@ export default function Detail() {
                       -
                     </button>
                   ) : (
-                    <button disabled onClick={decreaseQty} className="btn1">
+                    <button disabled className="btn1">
                       -
                     </button>
                   )}
@@ -120,7 +120,7 @@ export default function Detail() {
                       +
                     </button>
                   ) : (
-                    <button disabled onClick={increaseQty} className="btn3">
+                    <button disabled className="btn3">
                       +
                     </button>
                   )}

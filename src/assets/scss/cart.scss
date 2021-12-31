@@ -122,7 +122,7 @@
   .btn-sl {
     background-color: #fcf8f8;
     display: flex;
-    input {
+    .ant-input-number {
       width: 50px;
       border-radius: unset;
       text-align: center;
@@ -137,6 +137,9 @@
       &::-webkit-inner-spin-button {
         display: none;
       }
+      &-handler-wrap {
+        display: none;
+      }
     }
     .btn-increment {
       border-radius: unset;
@@ -149,6 +152,9 @@
       -moz-border-radius: unset;
       -ms-border-radius: unset;
       -o-border-radius: unset;
+      &:disabled {
+        cursor: not-allowed;
+      }
     }
     .btn-decrement {
       border-radius: unset;
@@ -161,6 +167,9 @@
       -moz-border-radius: unset;
       -ms-border-radius: unset;
       -o-border-radius: unset;
+      &:disabled {
+        cursor: not-allowed;
+      }
     }
   }
 

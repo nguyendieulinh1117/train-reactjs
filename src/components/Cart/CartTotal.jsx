@@ -1,12 +1,12 @@
 import { Col, Row } from "antd";
 import { useDispatch, useSelector } from "react-redux";
-// import { selectCarts, getTotals } from 'redux/cart';
 import { useEffect } from "react";
 
 import { Link } from "react-router-dom";
+import { selectCarts } from "redux/Cart";
 
 export default function CartTotal() {
-  //    const { cartTotalAmount, cartItems } = useSelector(selectCarts);
+  const { cartList } = useSelector(selectCarts);
   const dispatch = useDispatch();
 
   //    useEffect(() => {
@@ -17,16 +17,23 @@ export default function CartTotal() {
     <div className="cart__total">
       <Row className="cart__total--bottom" align="middle">
         <Col md={16}>
-          <div className="total--left">
-            <input type="checkbox" id="checkbox_total" />
-            <label className="total--left__text" htmlFor="checkbox_total">
-              Select All Products
-            </label>
-          </div>
+          <div className="total--left"></div>
         </Col>
         <Col md={8}>
           <div className="total--right">
-            {/* <span className="total__all">Total: <span className="price">${cartTotalAmount.total}</span></span> */}
+            <span className="total__all">
+              Total:{" "}
+              <span className="price">
+                $
+                {cartList && cartList.length > 0
+                  ? cartList.reduce(
+                      (prev, current) =>
+                        prev + current.product.price * current.quantity,
+                      0
+                    )
+                  : 0}
+              </span>
+            </span>
             <Link to="/">
               <button className="cart__button">Buy now</button>
             </Link>

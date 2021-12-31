@@ -10,7 +10,7 @@ function BreadCrumb({ page, item }) {
   return (
     <Breadcrumb>
       <Breadcrumb.Item>
-        <Link to={"/"}>Home</Link>
+        <Link to={"/train-reactjs"}>Home</Link>
       </Breadcrumb.Item>
       <Breadcrumb.Item>
         <Link

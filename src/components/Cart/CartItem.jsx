@@ -1,31 +1,34 @@
-import { Col, Row, Tag } from "antd";
+import { Col, InputNumber, Row, Tag } from "antd";
 import { useDispatch, useSelector } from "react-redux";
-// import {
-//   selectCarts,
-//   btnDecrement,
-//   btnIncrement,
-//   removeCart,
-// } from "redux/cart";
+import { toast } from "react-toastify";
 import { useState, useEffect } from "react";
-import { selectCarts } from "redux/Cart";
+import {
+  decreaseQty,
+  increaseQty,
+  removeCart,
+  selectCarts,
+  setQty,
+} from "redux/Cart";
 
 export default function CartItem() {
   const { cartList } = useSelector(selectCarts);
-  const dispath = useDispatch();
+  const dispatch = useDispatch();
   //   const [, setstate] = useState(cartItems);
 
-  //   const handleDecrement = (cartItems) => {
-  //     dispath(btnDecrement(cartItems));
-  //   };
-  //   const handleIncrement = (cartItems) => {
-  //     dispath(btnIncrement(cartItems));
-  //   };
-  //   const handleRemoveCart = (cartItems) => {
-  //     dispath(removeCart(cartItems));
-  //   };
-  //   const handleChange = (e) => {
-  //     return e.target.value;
-  //   };
+  const handleDecrease = (item) => {
+    dispatch(decreaseQty(item));
+  };
+  const handleIncrease = (item) => {
+    dispatch(increaseQty(item));
+  };
+  const handleRemoveCart = (item) => {
+    dispatch(removeCart(item));
+    toast.error(`${item.product.product_name} removed from cart`, {
+      position: "bottom-left",
+      autoClose: 2000,
+    });
+  };
+
   // re-render
   //   useEffect(() => {
   //     setstate(cartItems);
@@ -57,7 +60,6 @@ export default function CartItem() {
         cartList.map((item, index) => (
           <Row key={index} className="cart__product--main" align="middle">
             <Col span={10} className="main__img">
-              <input type="checkbox" />
               <img src={item.product.image[0]} alt="" />
               <h2>{item.product.product_name}</h2>
             </Col>
@@ -81,22 +83,54 @@ export default function CartItem() {
                 </Col>
                 <Col>
                   <div className="btn-sl">
-                    <button className="btn-decrement">-</button>
-
-                    <input
+                    {item.quantity > 1 ? (
+                      <button
+                        className="btn-decrement"
+                        onClick={() => handleDecrease(item)}
+                      >
+                        -
+                      </button>
+                    ) : (
+                      <button disabled className="btn-decrement">
+                        -
+                      </button>
+                    )}
+                    <InputNumber
                       name="quantity"
-                      type="number"
+                      defaultValue={item.quantity}
                       value={item.quantity}
+                      min={1}
+                      onChange={(e) => {
+                        dispatch(setQty({ ...item, quantity: e }));
+                      }}
                     />
 
-                    <button className="btn-increment">+</button>
+                    {item.quantity < item.product.inventory ? (
+                      <button
+                        className="btn-increment"
+                        onClick={() => handleIncrease(item)}
+                      >
+                        +
+                      </button>
+                    ) : (
+                      <button disabled className="btn-increment">
+                        +
+                      </button>
+                    )}
                   </div>
                 </Col>
                 <Col className="main__list--total">
                   <span>${item.product.price * item.quantity}</span>
                 </Col>
                 <Col className="main__list--delete">
-                  <button className="btn_remove">X</button>
+                  <button
+                    className="btn_remove"
+                    onClick={() => {
+                      handleRemoveCart(item);
+                    }}
+                  >
+                    X
+                  </button>
                 </Col>
               </Row>
             </Col>
