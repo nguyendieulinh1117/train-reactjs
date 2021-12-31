@@ -139,14 +139,31 @@
         border: 0.01px solid;
         border-top-left-radius: 5px;
         border-bottom-left-radius: 5px;
+        &:disabled {
+          cursor: not-allowed;
+        }
       }
-      .btn2 {
-        border-top: 1px solid;
-        border-bottom: 1px solid;
-        height: 30px;
-        width: 55px;
+      .ant-input-number {
+        width: 50px;
+        border-radius: unset;
         text-align: center;
-        border-radius: 0;
+        border: 1px solid black;
+        border-left: 0;
+        border-right: 0;
+        height: 30px;
+        -webkit-border-radius: unset;
+        -moz-border-radius: unset;
+        -ms-border-radius: unset;
+        -o-border-radius: unset;
+        &::-webkit-outer-spin-button {
+          display: none;
+        }
+        &::-webkit-inner-spin-button {
+          display: none;
+        }
+        .ant-input-number-handler-wrap {
+          display: none;
+        }
       }
       .btn3 {
         height: 30px;
@@ -154,6 +171,9 @@
         border: 0.01px solid;
         border-top-right-radius: 5px;
         border-bottom-right-radius: 5px;
+        &:disabled {
+          cursor: not-allowed;
+        }
       }
     }
   }

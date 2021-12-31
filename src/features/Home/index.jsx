@@ -6,12 +6,14 @@ import HeaderProduct from "components/Home/HeaderProduct";
 import Button from "components/utils/Button";
 import { selectProducts } from "../../redux/Product";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { LoadingOutlined } from "@ant-design/icons";
 import { Spin } from "antd";
 export default function Home() {
   const { productList } = useSelector(selectProducts);
   const { loading } = useSelector(selectProducts);
   const showProductList = productList.filter((item) => item.status === true);
+  const navigate = useNavigate();
   return (
     <div id="Home">
       <Banner />
@@ -27,7 +29,10 @@ export default function Home() {
           </div>
         )}
 
-        <div className="h_product-button">
+        <div
+          className="h_product-button"
+          onClick={() => navigate("/train-reactjs/product")}
+        >
           <Button title="all product >>" />
         </div>
       </div>

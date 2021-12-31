@@ -9,8 +9,11 @@ import { ShoppingCartOutlined, UserOutlined } from "@ant-design/icons";
 import Avatar from "antd/lib/avatar/avatar";
 import { setDefault } from "../../redux/Product";
 import { setDefaultF } from "redux/Filter";
+import { useSelector } from "react-redux";
+import { selectCarts } from "redux/Cart";
 function Header() {
   const { Header } = Layout;
+  const { cartList } = useSelector(selectCarts);
   const [show, handleShow] = useState(false);
   const dispatch = useDispatch();
   const transitionNavBar = () => {
@@ -79,8 +82,18 @@ function Header() {
               </div>
 
               <div>
-                <LinkRoute to={"/cart"}>
-                  <Badge count={8}>
+                <LinkRoute to={"train-reactjs/cart"}>
+                  <Badge
+                    count={
+                      cartList.length === 0
+                        ? 0
+                        : cartList &&
+                          cartList.reduce(
+                            (prev, current) => prev + current.quantity,
+                            0
+                          )
+                    }
+                  >
                     <Avatar
                       style={{
                         width: "40px",

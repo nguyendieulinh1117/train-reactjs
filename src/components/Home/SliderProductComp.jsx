@@ -1,9 +1,19 @@
 import React from "react";
-import { ShoppingCartOutlined, ShoppingOutlined } from "@ant-design/icons";
-
+import { ShoppingCartOutlined } from "@ant-design/icons";
+import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addCart } from "redux/Cart";
 
 export default function SliderProductComp({ product }) {
+  const dispatch = useDispatch();
+  const handleToCart = () => {
+    dispatch(addCart({ product, quantity: 1, pickColor: product.color[0] }));
+    toast.success(`${product.product_name} added to cart`, {
+      position: "bottom-left",
+      autoClose: 2000,
+    });
+  };
   return (
     <div className="h_product-flex">
       <div className="h_product-flex_hover">
@@ -11,12 +21,13 @@ export default function SliderProductComp({ product }) {
           <img src={product.image[0]} alt="img_product" />
         </Link>
         <div className="h_product-flex_sidebar">
-          <div className="icon-cart icon_hidden">
-            <ShoppingCartOutlined className="icon-card " />
-          </div>
-          <div className="icon_hidden">
-            <ShoppingOutlined className="icon-card " />
-          </div>
+          {product.inventory > 0 ? (
+            <div className="icon-cart icon_hidden" onClick={handleToCart}>
+              <ShoppingCartOutlined className="icon-card " />
+            </div>
+          ) : (
+            <div className="icon-cart icon_hidden">Sold out</div>
+          )}
         </div>
       </div>
       <div className="h_product-flex_content">

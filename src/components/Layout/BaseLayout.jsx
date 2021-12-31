@@ -2,7 +2,7 @@ import { Layout } from "antd";
 import Header from "components/Header";
 import "assets/scss/BaseLayout.scss";
 import { Route, Routes } from "react-router-dom";
-import { Detail, Home, Product } from "features";
+import { Cart, Detail, Home, Product } from "features";
 import BaseFooter from "components/Footer";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
@@ -26,6 +26,7 @@ export default function BaseLayout() {
               <Route path="/train-reactjs" element={<Home />} />
               <Route path="/train-reactjs/product" element={<Product />} />
               <Route path="/train-reactjs/product/:id" element={<Detail />} />
+              <Route path="/train-reactjs/cart" element={<Cart />} />
             </Routes>
           </div>
         </Content>

@@ -8,16 +8,17 @@ import {
   SkypeFilled,
   TwitterCircleFilled,
 } from "@ant-design/icons";
-import { Col, Radio, Row, Spin } from "antd";
+import { Col, InputNumber, Radio, Row, Spin } from "antd";
 
 import "assets/scss/detail.scss";
 import BreadCrumb from "components/Product/BreadCrumb";
-
+import { toast } from "react-toastify";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getSingleProduct, selectProducts } from "redux/Product";
+import { addCart } from "redux/Cart";
 
 export default function Detail() {
   const { id } = useParams();
@@ -29,7 +30,6 @@ export default function Detail() {
   useEffect(() => {
     dispatch(getSingleProduct(id));
   }, [dispatch, id]);
-  console.log(product);
 
   const increaseQty = () => {
     setQty(qty + 1);
@@ -37,7 +37,16 @@ export default function Detail() {
   const decreaseQty = () => {
     setQty(qty - 1);
   };
-  const handleAddToCart = () => {};
+  const handleAddToCart = () => {
+    if (color === null) {
+      toast.warning("You've not chosen color", {
+        position: "bottom-left",
+        autoClose: 2000,
+      });
+    } else {
+      dispatch(addCart({ product, quantity: qty, pickColor: color }));
+    }
+  };
 
   return (
     <div className="detail">
@@ -79,22 +88,42 @@ export default function Detail() {
                         <Radio.Button
                           className="color__item"
                           key={index}
-                          style={{ backgroundColor: item[index] }}
+                          value={item}
+                          style={{ backgroundColor: item }}
                         ></Radio.Button>
                       ))}
                   </Radio.Group>
                 </div>
                 <span className="textQuantyti">quantity</span>
                 <div className="quantity">
-                  <button onClick={decreaseQty} className="btn1">
-                    -
-                  </button>
+                  {qty > 1 ? (
+                    <button onClick={decreaseQty} className="btn1">
+                      -
+                    </button>
+                  ) : (
+                    <button disabled onClick={decreaseQty} className="btn1">
+                      -
+                    </button>
+                  )}
 
-                  <h3 className="btn2">{qty}</h3>
+                  <InputNumber
+                    defaultValue={qty}
+                    value={qty}
+                    min={1}
+                    onChange={(e) => {
+                      setQty(e);
+                    }}
+                  />
 
-                  <button onClick={increaseQty} className="btn3">
-                    +
-                  </button>
+                  {qty < product.inventory ? (
+                    <button onClick={increaseQty} className="btn3">
+                      +
+                    </button>
+                  ) : (
+                    <button disabled onClick={increaseQty} className="btn3">
+                      +
+                    </button>
+                  )}
                 </div>
               </div>
               {/* chia sẻ  */}
@@ -114,11 +143,15 @@ export default function Detail() {
               </div>
               <div className="footerInfor">
                 <div>
-                  <button className="btn" onClick={handleAddToCart}>
-                    {" "}
-                    <ShoppingCartOutlined className="Cart" />
-                    ADD TO CART
-                  </button>
+                  {product.inventory > 0 ? (
+                    <button className="btn" onClick={handleAddToCart}>
+                      {" "}
+                      <ShoppingCartOutlined className="Cart" />
+                      ADD TO CART
+                    </button>
+                  ) : (
+                    <button className="btn">SOLD OUT</button>
+                  )}
                 </div>
               </div>
             </Col>

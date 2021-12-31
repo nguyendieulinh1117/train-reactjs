@@ -34,16 +34,28 @@ function BaseFooter() {
                 </div>
                 <div className="footer__section--follow visible">
                   <div className="footer__section--icon_fb">
-                    <img src={"images/facebook-icon.png"} alt="facebook" />
+                    <img
+                      src="/train-reactjs/images/facebook-icon.png"
+                      alt="facebook"
+                    />
                   </div>
                   <div className="footer__section--icon_twitter">
-                    <img src={"images/twitter-icon.png"} alt="twitter" />
+                    <img
+                      src="/train-reactjs/images/twitter-icon.png"
+                      alt="twitter"
+                    />
                   </div>
                   <div className="footer__section--icon_shoppe">
-                    <img src={"images/shopee-icon.png"} alt="shopee" />
+                    <img
+                      src="/train-reactjs/images/shopee-icon.png"
+                      alt="shopee"
+                    />
                   </div>
                   <div className="footer__section--icon_lazada">
-                    <img src={"images/lazada-icon.png"} alt="lazada" />
+                    <img
+                      src="/train-reactjs/images/lazada-icon.png"
+                      alt="lazada"
+                    />
                   </div>
                 </div>
               </Col>
