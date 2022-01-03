@@ -13,6 +13,7 @@ import { filterProduct, selectProducts } from "redux/Product";
 import Header from "components/Header";
 import BaseFooter from "components/Footer";
 import { useNavigate } from "react-router-dom";
+import query from "query-string";
 const { Content } = Layout;
 export default function Product() {
   const { productList } = useSelector(selectProducts);
@@ -28,10 +29,11 @@ export default function Product() {
   //filter
   const options = useSelector((state) => state.filterState);
   const { filterStatus } = useSelector((state) => state.productState);
-  console.log(options, filterStatus);
+  console.log(query.parse(window.location.search).catalog);
   useEffect(() => {
     dispatch(filterProduct(options));
   }, [dispatch, options]);
+
   //pagination
   const [currentPage, setCurrentPage] = useState(1);
   const [pageSize, setPageSize] = useState(8);

@@ -1,4 +1,5 @@
 import instance from "../../api/axiosClient";
+import query from "query-string";
 import {
   createAsyncThunk,
   createSelector,
@@ -11,7 +12,10 @@ const initialState = {
   error: "",
   product: {},
   filterProductList: [],
-  filterStatus: false,
+  filterStatus:
+    Object.keys(query.parse(window.location.search)).length === 0
+      ? false
+      : true,
 };
 export const getAllProduct = createAsyncThunk(
   "GET_ALL_PRODUCTS",

@@ -1,17 +1,23 @@
 import { FilterOutlined } from "@ant-design/icons";
 import { Button, Input, Layout, Radio, Row } from "antd";
 import React from "react";
+import query from "query-string";
 
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { selectCatalogs } from "redux/Catalog";
 import { setCatalog, setPrice } from "redux/Filter";
 import { setFilter } from "redux/Product";
+import { useNavigate } from "react-router-dom";
 
 const { Sider } = Layout;
 
 function SideComponent() {
   const { catalogList } = useSelector(selectCatalogs);
+  let parsed = query.parse(window.location.search);
+  const options = useSelector((state) => state.filterState);
+
+  const navigate = useNavigate();
   const [priceMin, setPriceMin] = useState("");
   const [priceMax, setPriceMax] = useState("");
   const dispatch = useDispatch();
@@ -32,6 +38,9 @@ function SideComponent() {
         setErr(false);
         dispatch(setFilter());
         dispatch(setPrice({ priceMin, priceMax }));
+        parsed.priceMin = priceMin;
+        parsed.priceMax = priceMax;
+        navigate(`/train-reactjs/product/?${query.stringify(parsed)}`);
       }
     }
   };
@@ -47,10 +56,13 @@ function SideComponent() {
         <h3 className="side__title">Categories</h3>
         <Radio.Group
           defaultValue=""
+          value={options.catalog}
           buttonStyle="solid"
           onChange={(e) => {
             dispatch(setFilter());
             dispatch(setCatalog(e.target.value));
+            parsed.catalog = e.target.value;
+            navigate(`/train-reactjs/product/?${query.stringify(parsed)}`);
           }}
         >
           {catalogList &&

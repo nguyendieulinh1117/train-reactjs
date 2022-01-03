@@ -5,10 +5,10 @@ function Banner() {
   return (
     <Row className="slider">
       <Col className="slider-left" xs={24} md={14}>
-        <img src={"/train-reactjs/images/slider.png"} alt="img_slider-left" />
+        <img src="/train-reactjs/images/slider.png" alt="img_slider-left" />
       </Col>
       <Col className="slider-right container_home" xs={24} md={10}>
-        <img src={"/train-reactjs/images/slider2.png"} alt="img_slider-right" />
+        <img src="/train-reactjs/images/slider2.png" alt="img_slider-right" />
         <div className="slider-right_title">
           <h1>Make your days feeling goods with beautiful plant</h1>
         </div>
