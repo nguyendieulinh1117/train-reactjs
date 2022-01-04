@@ -1,5 +1,5 @@
 import "assets/scss/BaseLayout.scss";
-import { Route, Routes, useNavigate } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import { Cart, Detail, Home, NotFound, Product } from "features";
 
 import { useEffect } from "react";
